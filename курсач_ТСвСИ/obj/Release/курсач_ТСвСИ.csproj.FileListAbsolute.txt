@@ -1,0 +1,9 @@
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Release\курсач_ТСвСИ.exe.config
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Release\курсач_ТСвСИ.exe
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Release\курсач_ТСвСИ.pdb
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.csprojResolveAssemblyReference.cache
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.Form1.resources
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.Properties.Resources.resources
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.csproj.GenerateResource.Cache
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.exe
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Release\курсач_ТСвСИ.pdb

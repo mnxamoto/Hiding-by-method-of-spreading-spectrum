@@ -1,0 +1,9 @@
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Debug\курсач_ТСвСИ.exe.config
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Debug\курсач_ТСвСИ.exe
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\bin\Debug\курсач_ТСвСИ.pdb
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.Form1.resources
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.Properties.Resources.resources
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.csproj.GenerateResource.Cache
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.exe
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.pdb
+D:\C#\курсач_ТСвСИ\курсач_ТСвСИ\obj\Debug\курсач_ТСвСИ.csprojResolveAssemblyReference.cache
