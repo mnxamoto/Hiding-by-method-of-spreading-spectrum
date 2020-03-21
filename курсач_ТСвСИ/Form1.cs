@@ -86,7 +86,7 @@ namespace курсач_ТСвСИ
             int[] C = Vrnd(s, d);
             Autocorrelation(C);
             PutArrayInDGV(C, dataGridView3);
-            return;
+
             //ШАГ5
             int column1 = 0;
             int column2 = n;
