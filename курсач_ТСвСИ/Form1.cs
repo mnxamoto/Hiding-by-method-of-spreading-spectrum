@@ -572,11 +572,11 @@ namespace курсач_ТСвСИ
                             zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).R;
                             break;
                         case "Зелёный":
-                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).G;
+                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox1.Image).GetPixel(i, k).G;
                             zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).G;
                             break;
                         case "Синий":
-                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).B;
+                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox1.Image).GetPixel(i, k).B;
                             zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).B;
                             break;
                         default:
