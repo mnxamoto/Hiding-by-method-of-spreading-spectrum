@@ -22,6 +22,8 @@ namespace курсач_ТСвСИ
 
         private void button1_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = ".bmp|*.bmp";
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image = new Bitmap(openFileDialog1.FileName);
@@ -80,10 +82,11 @@ namespace курсач_ТСвСИ
 
             //ШАГ4
             int d = Convert.ToInt32(Math.Log(N_fi, 2));
-            int s = rand.Next(1, N_fi);
+            int s = rand.Next(1, N_fi - 1);
             int[] C = Vrnd(s, d);
+            Autocorrelation(C);
             PutArrayInDGV(C, dataGridView3);
-
+            return;
             //ШАГ5
             int column1 = 0;
             int column2 = n;
@@ -99,7 +102,7 @@ namespace курсач_ТСвСИ
 
             for (int i = 0; i < N_fi + 1; i++)
             {
-                row1 = (n * i) % WidthImage; //возможно проблемка из-за *0
+                row1 = (n * (i)) % WidthImage; //возможно проблемка из-за *0
                 row2 = row1 + n;
 
                 List_MOBF.Insert(C[i], PerenosOblasti(MOBF, row1, row2, column1, column2));
@@ -154,6 +157,7 @@ namespace курсач_ТСвСИ
             //ШАГ7
             int[] BOM_stegoText = TextToBinaru(textBox1.Text);
 
+            PutArrayInDGV(Encoding.Default.GetBytes(textBox1.Text).Select(x => Convert.ToInt32(x)).ToArray(), dataGridView10);
             PutArrayInDGV(BOM_stegoText, dataGridView8);
 
             //ШАГ8
@@ -523,6 +527,8 @@ namespace курсач_ТСвСИ
 
             textBox2.Text = BinaruToText(Mvec_bin);
             //textBox2.Text = textBox1.Text; 
+
+            Ocenka();
         }
 
         private String BinaruToText(int[] Binaru)
@@ -546,6 +552,100 @@ namespace курсач_ТСвСИ
             text = Encoding.Default.GetString(Bytes);
 
             return text;
+        }
+
+        private void Ocenka()
+        {
+            int HeightImage = pictureBox2.Image.Height;
+            int WidthImage = pictureBox2.Image.Width;
+            byte[] ishod = new byte[WidthImage * HeightImage];
+            byte[] zapolnennnoe = new byte[WidthImage * HeightImage];
+
+            for (int i = 0; i < WidthImage; i++)
+            {
+                for (int k = 0; k < HeightImage; k++)
+                {
+                    switch (comboBox1.Text)
+                    {
+                        case "Красный":
+                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox1.Image).GetPixel(i, k).R;
+                            zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).R;
+                            break;
+                        case "Зелёный":
+                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).G;
+                            zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).G;
+                            break;
+                        case "Синий":
+                            ishod[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).B;
+                            zapolnennnoe[i * HeightImage + k] = ((Bitmap)pictureBox2.Image).GetPixel(i, k).B;
+                            break;
+                        default:
+                            MessageBox.Show("Не был выбран цветовой канал!");
+                            return;
+                    }
+                }
+            }
+
+            label14.Text = "Среднеквадратичная ошибка : " + MSE(ishod, zapolnennnoe);
+            label13.Text = "Нормировання среднеквадратичная ошибка : " + NMSE(ishod, zapolnennnoe);
+        }
+
+        public static double MSE(byte[] image1, byte[] image2)
+        {
+            double result = 0;
+            double addition;
+            int length = image1.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                addition = Math.Pow(image1[i] - image2[i], 2);
+                result += addition;
+            }
+
+            return result / length;
+        }
+
+        public static double NMSE(byte[] image1, byte[] image2)
+        {
+            byte[] imageNull = new byte[image1.Length];
+            double result = MSE(image1, image2) / MSE(image1, imageNull);
+            return result;
+        }
+
+        public void Autocorrelation(int[] data)
+        {
+            int n = data.Length;
+            chart2.Series[0].Points.Clear();
+
+            for (int i = 0; i < n; i++)
+            {
+                double summ1 = 0;
+                double summ2 = 0;
+                double summ3 = 0;
+
+                int n_iteration = n - i;
+
+                int[] x1 = data.Skip(i).ToArray();
+                int[] x2 = data.Take(n_iteration).ToArray();
+
+                double mean1 = x1.Average();
+                double mean2 = x2.Average();
+
+                for (int k = 0; k < n_iteration; k++)
+                {
+                    summ1 += (x1[k] - mean1) * (x2[k] - mean2);
+                    summ2 += Math.Pow((x1[k] - mean1), 2);
+                    summ3 += Math.Pow((x2[k] - mean2), 2);
+                }
+
+                double korrellFunction = summ1 / (Math.Sqrt(summ2 * summ3));
+                chart2.Series[0].Points.AddY(korrellFunction);
+
+                if (i > 800)
+                {
+                    break;
+                }
+            }
         }
     }
 }
